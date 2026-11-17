@@ -9,6 +9,8 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
     "fastapi[standard]>=0.163.1",
+    "psycopg2>=2.9.13",
+    "python-dotenv>=1.2.4",
     "sqlalchemy>=2.1.9",
 ]
 
@@ -18,3 +20,6 @@ ecommerce = "ecommerce:main"
 [build-system]
 requires = ["uv_build>=0.12.3,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.fastapi]
+entrypoint = "ecommerce:app"
