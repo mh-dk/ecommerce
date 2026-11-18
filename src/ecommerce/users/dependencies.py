@@ -4,10 +4,10 @@ from ecommerce.core import DbSession
 from ecommerce.auth.exceptions import (
     BadToken
 )
-from ecommerce.user.models import (
+from ecommerce.users.models import (
     User
 )
-from ecommerce.user import service as user_service
+from ecommerce.users import service as users_service
 
 def current_user(
     request:Request, 
@@ -20,7 +20,7 @@ def current_user(
         raise BadToken()
 
     if user_id:
-        user = user_service.by_id(user_id, session)
+        user = users_service.by_id(user_id, session)
         if not user:
             raise BadToken()
         return user

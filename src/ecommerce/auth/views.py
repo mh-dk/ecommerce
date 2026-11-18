@@ -3,7 +3,7 @@ from ecommerce.auth.models import (
     LoginForm
 )
 from ecommerce.core import DbSession
-from ecommerce.user.models import (
+from ecommerce.users.models import (
     UserIn
 )
 from . import service as auth_service

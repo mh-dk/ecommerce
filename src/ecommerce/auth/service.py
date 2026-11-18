@@ -2,10 +2,10 @@ from datetime import datetime, timezone, timedelta
 import jwt
 from sqlalchemy.orm import Session
 from ecommerce import config
-from ecommerce.user.models import (
+from ecommerce.users.models import (
     UserIn
 )
-from ecommerce.user import service as user_service
+from ecommerce.users import service as users_service
 from ecommerce.auth.models import (
     AuthToken,
     LoginForm
@@ -53,7 +53,7 @@ def token_from_header(header:str):
     return token
 
 def signup(user_in: UserIn, session: Session):
-    user = user_service.create_user(user_in, session)
+    user = users_service.create_user(user_in, session)
     token = generate_token(user.id)
     return AuthToken(
         type="bearer",
@@ -61,7 +61,7 @@ def signup(user_in: UserIn, session: Session):
     )
 
 def login(form: LoginForm, session: Session):
-    user = user_service.by_phone(form.phone, session)
+    user = users_service.by_phone(form.phone, session)
     if not user:
         raise WrongCredentials()
     if not user.verify_password(form.password):
