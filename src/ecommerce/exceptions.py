@@ -9,7 +9,6 @@ class ServiceError(Exception, Generic[T]):
     msg_template = "error at {location}"
 
     def __init__(self, *args, **kwargs) -> None:
-        print(args, kwargs)
         self.msg = self.msg_template.format(args, kwargs)
         self.details:T | None = None
         super().__init__(f"a service error with code {self.error_code} occurred.", self.msg)
