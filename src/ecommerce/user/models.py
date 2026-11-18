@@ -10,7 +10,7 @@ from ecommerce.core import Base, ph
 class User(Base):
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(BigInteger)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     firstname: Mapped[str] = mapped_column(String(100))
     lastname: Mapped[str] = mapped_column(String(100))
     phone_number: Mapped[str] = mapped_column(String(15), unique=True, index=True)
