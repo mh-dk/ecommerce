@@ -16,3 +16,4 @@ def config(name: str, default: str | None = None):
 load_dotenv(override=True)
 
 SQLALCHEMY_URL = config("SQLALCHEMY_URL")
+JWT_SECRET = config("JWT_SECRET")
