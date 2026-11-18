@@ -30,6 +30,9 @@ class UserNotFoundDetails(BaseModel):
     indicator: Literal["id"] | Literal["phone"]
     value: int | str
 
+class DuplicatePhoneNumberDetails(BaseModel):
+    value: str
+
 # [---- logic models ----]
 class UserIn(BaseModel):
     firstname: str
