@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from ecommerce.auth import service as auth_service
-from .core import Session
+from .core import Session, Base, engine
 from .exceptions import ServiceError
 from .views import router
 
@@ -47,3 +47,5 @@ async def service_error_hanler(request: Request, exc: ServiceError):
     return service_error_response(exc)
 
 app.include_router(router)
+
+Base.metadata.create_all(engine)
