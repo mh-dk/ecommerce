@@ -4,12 +4,22 @@ from .models import (
     DuplicatePhoneNumberDetails,
     User,
     UserIn,
-    UserNotFoundDetails
+    UserNotFoundDetails,
+    UserOut
 )
 from .exceptions import (
     DuplicatePhoneNumber,
     UserNotFound,
 )
+
+def to_model(user: User):
+    return UserOut(
+        id=user.id,
+        firstname=user.firstname,
+        lastname=user.lastname,
+        phone=user.phone_number,
+        singed_up_at=user.created_at
+    )
 
 def by_id(user_id: int, session: Session):
     return session.get(User, user_id)

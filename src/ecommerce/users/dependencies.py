@@ -24,5 +24,7 @@ def current_user(
         if not user:
             raise BadToken()
         return user
+    else:
+        raise BadToken()
 
-type CurrentUser = Annotated[User | None, Depends(current_user)]
+type CurrentUser = Annotated[User, Depends(current_user)]

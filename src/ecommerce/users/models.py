@@ -2,8 +2,8 @@ from typing import Literal
 from datetime import datetime
 from argon2.exceptions import VerifyMismatchError
 from pydantic import BaseModel
-from sqlalchemy import BigInteger, String, DateTime, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import BigInteger, String, DateTime, Text, func
+from sqlalchemy.orm import InstanceEvents, Mapped, mapped_column
 from ecommerce.core import Base, ph
 
 # [---- orm models ----]
@@ -40,3 +40,11 @@ class UserIn(BaseModel):
     phone: str
     email: str | None = None
     password: str
+
+class UserOut(BaseModel):
+    id: int
+    firstname: str
+    lastname: str
+    phone: str
+    email: str | None = None
+    singed_up_at: datetime
